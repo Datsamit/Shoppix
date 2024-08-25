@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About us | Shoppix</title>
+</head>
+<style>
+    body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+.btn{
+    display: inline-block;
+    background: #ff523b;
+    color: #fff;
+    padding: 8px 30px;
+    margin: 10px 0;
+    margin-left: 85%;
+    border-radius: 30px;
+    text-decoration:none
+}
+
+.btn:hover{
+    background: #e48473;
+}
+</style>
+<body>
+    
+    <div class="about-section">
+        <h1>About Us</h1>
+        
+        <p>Welcome to Shoppix, your ultimate destination for cutting-edge gadgets!</p>
+        <p>Choose Shoppix EduHub for a holistic, enriching learning experience that empowers you to achieve your goals.</p>
+        <p>Our knowledgeable staff provides expert guidance, helping you choose the right gadget to meet your needs and preferences, ensuring you make informed decisions every step of the way. </p>
+        <a href="index.html" class="btn">&#8617; Return to Home</a>
+      </div>
+
+           
+      <h2 style="text-align:center">Our Team</h2>
+      <div class="row">
+        <div class="column">
+          <div class="card">
+            <img src="images/ceo.jpg" alt="Jennifer" style="width:100%">
+            <div class="container">
+              <h2>Jennifer Hanson</h2>
+              <p class="title">CEO & Founder</p>
+              <p>Leading and motivating subordinates to advance employee engagement develop a high performing managerial team.</p>
+              <p>jennifer@shoppix.com</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="column">
+          <div class="card">
+            <img src="images/director.jpg" alt="Mike" style="width:100%">
+            <div class="container">
+              <h2>Mike Ross</h2>
+              <p class="title">Art Director</p>
+              <p>Collaborate with marketing and sales divisions in creating marketing plans and aligning team priorities with business objectives so that high-quality work is delivered.</p>
+              <p>mike@shoppix.com</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+      
+        <div class="column">
+          <div class="card">
+            <img src="images/designer.jpg" alt="Michael" style="width:100%">
+            <div class="container">
+              <h2>Michael Scott</h2>
+              <p class="title">Designer</p>
+              <p>Coordinates with internal teams, including marketing, in the design concept phase through completion of a project and amend designs after feedback.</p>
+              <p>michael@shoppix.com</p>
+              <p><button class="button">Contact</button></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+              <img src="images/president.jpg" alt="John" style="width:100%">
+              <div class="container">
+                <h2>Kevin Malone</h2>
+                <p class="title">President</p>
+                <p>Represents the company at internal and external events. Oversees multiple departments, including legal, operations, finance, marketing, and human resources.</p>
+                <p>kevin@yahoo.com</p>
+                <p><button class="button">Contact</button></p>
+              </div>
+            </div>
+          </div>
+      </div>
+</body>
+</html>

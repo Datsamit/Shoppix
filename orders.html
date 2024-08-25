@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders | Shoppix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(127, 163, 168);
+            color: #333;
+        }
+        .orders-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        #orders-list {
+            margin-top: 20px;
+        }
+        .order {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .order h2 {
+            margin: 0 0 10px;
+            font-size: 20px;
+            color: #4CAF50;
+        }
+        .order p {
+            margin: 0 0 10px;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table th, table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        table th {
+            background-color: #f4f4f4;
+        }
+        .order-item-image {
+            max-width: 50px; /* Adjust the image size as needed */
+            height: auto;
+        }
+        .return-home {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            text-align: center;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .return-home:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="orders-container">
+        <h1>Your Orders</h1>
+        <div id="orders-list">
+            <!-- Orders will be injected here by JavaScript -->
+        </div>
+        <a href="index.html" class="return-home">Return to Home</a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', loadOrders);
+
+        function getLoggedInUser() {
+            return JSON.parse(localStorage.getItem('loggedInUser'));
+            
+        }
+        
+
+        function loadOrders() {
+            const loggedInUser = getLoggedInUser();
+            if (!loggedInUser && loggedInUserRole == "guest") {
+                alert('You need to be logged in to view your orders.');
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const orders = JSON.parse(localStorage.getItem('orders')) || [];
+            const userOrders = orders.filter(order => order.userId === loggedInUser.id);
+            const ordersList = document.getElementById('orders-list');
+            ordersList.innerHTML = ''; // Clear any existing orders
+
+            if (userOrders.length === 0) {
+                ordersList.innerHTML = '<p>No orders placed yet.</p>';
+                                return;
+            }
+
+            userOrders.forEach(order => {
+                const orderDiv = document.createElement('div');
+                orderDiv.className = 'order';
+
+                const orderHeader = document.createElement('h2');
+                orderHeader.innerText = `Order ID: ${order.id}`;
+                orderDiv.appendChild(orderHeader);
+
+                const orderDetails = document.createElement('p');
+                orderDetails.innerHTML = `<strong>Name:</strong> ${order.customerDetails.name}<br>
+                                          <strong>Email:</strong> ${order.customerDetails.email}<br>
+                                          <strong>Address:</strong> ${order.customerDetails.address}, ${order.customerDetails.city}, ${order.customerDetails.zip}<br>
+                                          <strong>Total:</strong> $${order.total.toFixed(2)}`;
+                orderDiv.appendChild(orderDetails);
+
+                const orderItemsTable = document.createElement('table');
+                orderItemsTable.innerHTML = `<thead>
+                                                <tr>
+                                                    <th>Image</th>
+                                                    <th>Product</th>
+                                                    <th>Price</th>
+                                                    <th>Quantity</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                             </thead>
+                                             <tbody>
+                                             ${aggregateProducts(order.items).map(product => `
+                                                <tr>
+                                                    <td><img src="${product.image}" alt="${product.name}" class="order-item-image"></td>
+                                                    <td>${product.name}</td>
+                                                    <td>$${parseFloat(product.price).toFixed(2)}</td>
+                                                    <td>${product.quantity}</td>
+                                                    <td>$${(parseFloat(product.price) * product.quantity).toFixed(2)}</td>
+                                                </tr>
+                                             `).join('')}
+                                             </tbody>`;
+                orderDiv.appendChild(orderItemsTable);
+
+                ordersList.appendChild(orderDiv);
+            });
+        }
+
+        function aggregateProducts(items) {
+            const productMap = new Map();
+            
+            items.forEach(item => {
+                if (productMap.has(item.name)) {
+                    const existingProduct = productMap.get(item.name);
+                    existingProduct.quantity += item.quantity;
+                } else {
+                    productMap.set(item.name, {
+                        ...item,
+                        quantity: item.quantity
+                    });
+                }
+            });
+
+            return Array.from(productMap.values());
+        }
+    </script>
+</body>
+</html>

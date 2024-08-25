@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Shoppix</title>
+</head>
+<style>
+
+
+* {
+  box-sizing:border-box;
+  margin:0;
+}
+
+body {
+	background: linear-gradient(90deg, #c9a5ec 0%, rgba(94, 81, 245, 0.83) 100%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+  font-size:10px;
+	height: 100vh;
+	margin: -20px 0 50px;
+}
+
+.container {
+	background-color: white;
+	border-radius: 5px;
+  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+	position: relative;
+	overflow: hidden;
+	width: 1000px;
+	max-width: 100%;
+	min-height: 480px;
+  min-width:370px;
+}
+
+h2 {
+  font-size:2rem;
+  margin-bottom:1rem;
+}
+.form-container {
+  display:flex;
+}
+
+.left-container {
+  flex:1;
+  height:480px;
+  background-color:teal;
+}
+.right-container {
+  display:flex;
+  flex:1;
+  height:460px;
+  background-color: white;
+  justify-content:center;
+  align-items:center;
+}
+
+.left-container {
+  display:flex;
+  flex:1;
+  height:480px;
+  justify-content:center;
+  align-items:center;
+    color:white;
+}
+
+.left-container p {
+  font-size:0.9rem;
+}
+
+.right-inner-container {
+  width:70%;
+  height:80%;
+  text-align:center;
+}
+
+.left-inner-container {
+  height:50%;
+  width:80%;
+  text-align:center;
+  line-height:22px;
+}
+
+input, textarea {
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+  font-size:0.8rem;
+}
+
+input:focus, textarea:focus{
+  outline:1px solid teal;
+}
+
+button {
+	border-radius: 20px;
+	border: 1px solid #00b4cf;
+	background-color: #00b4cf;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+  cursor:pointer;
+}
+
+button:hover {
+  opacity:0.7;
+}
+@media only screen and (max-width: 600px) {
+  .left-container{
+    display: none;
+  }
+  .lg-view {
+    display:none;  
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .sm-view {
+    display:none;  
+  }
+}
+
+form p {
+  text-align:left;
+} 
+.btn{
+    display: inline-block;
+    background: #ff523b;
+    color: #fff;
+    font-size: 15px;
+    margin-left: 15px;
+    padding: 10px 30px;
+    border-radius: 30px;
+    text-decoration:none
+}
+
+.btn:hover{
+    background: #e48473;
+}  
+</style>
+<body>
+    <div class="container">
+        <div class="form-container">
+          <div class="left-container">
+            <div class="left-inner-container">
+            <h2>Let's Chat</h2>
+            <br>
+            <p>Whether you have a question, want to start a project or simply want to connect.</p>
+              <br>
+              <p>Feel free to send us a message in the contact form</p>
+          </div>
+            </div>
+          <div class="right-container">
+            <div class="right-inner-container">
+              <form id="contact-form" action="#">
+                  <h2 class="lg-view">Contact Us</h2>
+            <h2 class="sm-view">Let's Chat</h2>
+                 
+                  <div class="social-container">
+                      <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                      <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                  </div>
+                <input type="text" placeholder="Frist Name" required/>
+                <input type="text" placeholder="Last Name" required/>
+            <input type="email" placeholder="Email" required/>
+                  <input type="phone" placeholder="Phone" required/>
+                <textarea rows="4" placeholder="Message" required></textarea>
+                  <button id="submit-btn">Submit</button>
+                  <a href="index.html" class="btn">&#8617; Return to Home</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
+<script>
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    alert('Your message has been sent successfully!');
+    window.location.href = 'index.html';
+  });
+</script>
+
+</html>
